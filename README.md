@@ -1,2 +1,2 @@
 # blogrr
-A blog web application built in Django and  VueJs.
+A blog API built with Django.
