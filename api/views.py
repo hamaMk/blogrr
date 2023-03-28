@@ -1,7 +1,7 @@
 from .models import AppUser
 from rest_framework import viewsets
-from .models import BlogPost
-from .serializers import UserSerializer, BlogPostSerializer
+from .models import BlogPost, Image
+from .serializers import UserSerializer, BlogPostSerializer, ImageSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -12,4 +12,9 @@ class UserViewSet(viewsets.ModelViewSet):
 class BlogPostViewSet(viewsets.ModelViewSet):
     queryset = BlogPost.objects.all()
     serializer_class = BlogPostSerializer
+
+
+class ImageViewSet(viewsets.ModelViewSet):
+    queryset = Image.objects.all()
+    serializer_class = ImageSerializer
 

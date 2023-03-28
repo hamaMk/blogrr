@@ -1,5 +1,5 @@
 from users.models import AppUser
-from .models import BlogPost, Tag
+from .models import BlogPost, Tag, Image
 from rest_framework import serializers
 
 
@@ -20,3 +20,8 @@ class TagSerializer(serializers.HyperlinkedModelSerializer):
         model = Tag
         fields = ['url', 'name']
 
+
+class ImageSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Image
+        fields = ['url', 'title']

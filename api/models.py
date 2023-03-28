@@ -5,6 +5,7 @@ from django.conf import settings
 from django.urls import reverse
 import datetime
 from tinymce.models import HTMLField
+from django.utils.html import mark_safe
 
 POST_TITLE_MAX_LENGTH = settings.POST_TITLE_MAX_LENGTH
 
@@ -56,6 +57,9 @@ class Image(models.Model):
     caption = models.CharField(max_length=50, blank=True, null=True)
     image = models.ImageField(upload_to='images', blank=False, null=False)
     upload_date = models.DateTimeField(auto_now_add=True)
+
+    def img_thumbnail(self):  # new
+        return mark_safe(f'<img src = "{self.image.url}" width = "100"/>')
 
     def __str__(self):
         return self.title

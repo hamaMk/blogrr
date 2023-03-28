@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.db import models
-from .models import BlogPost, Tag
+from .models import BlogPost, Tag, Image
 from tinymce.widgets import TinyMCE
 
 
@@ -24,6 +24,12 @@ class BlogPostAdmin(admin.ModelAdmin):
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
     list_display = ('name', )
+
+
+@admin.register(Image)
+class ImageAdmin(admin.ModelAdmin):
+    list_display = ('img_thumbnail', 'title', 'caption')
+    readonly_fields = ['img_thumbnail']
 
 
 
