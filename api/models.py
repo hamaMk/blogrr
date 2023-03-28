@@ -1,10 +1,18 @@
 from django.db import models
+from users.models import AppUser
 from django.template.defaultfilters import slugify
 from django.conf import settings
 from django.urls import reverse
 import datetime
 
 POST_TITLE_MAX_LENGTH = settings.POST_TITLE_MAX_LENGTH
+
+
+class UserOwnedModel(models.Model):
+    owner = models.ForeignKey(AppUser, on_delete=models.PROTECT, default=None, blank=True, null=True)
+
+    class Meta:
+        abstract = True
 
 
 class Tag(models.Model):
@@ -14,7 +22,7 @@ class Tag(models.Model):
         return self.name
 
 
-class BlogPost(models.Model):
+class BlogPost(UserOwnedModel):
     title = models.CharField(max_length=POST_TITLE_MAX_LENGTH)
     short_description = models.CharField(max_length=500)
     content = models.TextField()
@@ -50,3 +58,6 @@ class Image(models.Model):
 
     def __str__(self):
         return self.title
+
+
+
