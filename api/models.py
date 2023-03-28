@@ -10,7 +10,7 @@ POST_TITLE_MAX_LENGTH = settings.POST_TITLE_MAX_LENGTH
 
 
 class UserOwnedModel(models.Model):
-    owner = models.ForeignKey(AppUser, on_delete=models.PROTECT, default=None, blank=True, null=True)
+    owner = models.ForeignKey(AppUser, on_delete=models.SET_NULL, default=None, blank=True, null=True)
 
     class Meta:
         abstract = True
