@@ -17,7 +17,7 @@ class BlogPostAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         if not obj.pk:
             # Only set added_by during the first save.
-            obj.added_by = request.user
+            obj.owner = request.user
         super().save_model(request, obj, form, change)
 
 
