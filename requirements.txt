@@ -5,3 +5,4 @@ Markdown==3.4.3
 django-filter==23.1
 rest-framework-roles==1.0.3
 Pillow==9.4.0
+django-tinymce==3.6.1

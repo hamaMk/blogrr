@@ -4,6 +4,7 @@ from django.template.defaultfilters import slugify
 from django.conf import settings
 from django.urls import reverse
 import datetime
+from tinymce.models import HTMLField
 
 POST_TITLE_MAX_LENGTH = settings.POST_TITLE_MAX_LENGTH
 
@@ -25,7 +26,7 @@ class Tag(models.Model):
 class BlogPost(UserOwnedModel):
     title = models.CharField(max_length=POST_TITLE_MAX_LENGTH)
     short_description = models.CharField(max_length=500)
-    content = models.TextField()
+    content = HTMLField()
     slug = models.SlugField(max_length=POST_TITLE_MAX_LENGTH, editable=False, unique=True)
     tags = models.ManyToManyField(Tag, blank=True)
     featured_image = models.ForeignKey('Image', on_delete=models.PROTECT, null=True, blank=True)
