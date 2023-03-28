@@ -1,12 +1,12 @@
 from users.models import AppUser
-from models import BlogPost, Tag
+from .models import BlogPost, Tag
 from rest_framework import serializers
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = AppUser
-        fields = ['url', 'email', 'role']
+        fields = ['url', 'email', 'role', 'get_absolute_url']
 
 
 class BlogPostSerializer(serializers.HyperlinkedModelSerializer):
