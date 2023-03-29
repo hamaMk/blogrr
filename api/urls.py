@@ -8,4 +8,5 @@ router.register(r'posts', views.BlogPostViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('search/', views.SearchView.as_view(), name='search-results'),
 ]
