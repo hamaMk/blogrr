@@ -1,12 +1,24 @@
-from users.models import AppUser
+from django.contrib.auth import get_user_model
 from .models import BlogPost, Tag, Image
 from rest_framework import serializers
 
+AppUser = get_user_model()
+
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
+    password = serializers.CharField(write_only=True)
+
+    def create(self, validated_data):
+        user = AppUser.objects.create_user(
+            email=validated_data['email'],
+            password=validated_data['password'],
+        )
+
+        return user
+
     class Meta:
         model = AppUser
-        fields = ['url', 'email', 'role']
+        fields = ['url', 'email', 'password', 'role']
 
 
 class BlogPostSerializer(serializers.HyperlinkedModelSerializer):
