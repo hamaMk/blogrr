@@ -41,12 +41,14 @@ INSTALLED_APPS = [
     'rest_framework_roles',
     'tinymce',
     'rest_framework_simplejwt',
+    'django_filters',
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
 
 REST_FRAMEWORK_ROLES = {

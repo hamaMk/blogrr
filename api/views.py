@@ -5,6 +5,8 @@ from .serializers import UserSerializer, BlogPostSerializer, ImageSerializer
 from rest_framework import generics
 from rest_framework_roles.granting import is_self
 from rest_framework_roles.roles import is_anon
+from rest_framework import filters
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -22,6 +24,9 @@ class UserViewSet(viewsets.ModelViewSet):
 class BlogPostViewSet(viewsets.ModelViewSet):
     queryset = BlogPost.objects.all()
     serializer_class = BlogPostSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ['owner', 'published']
+    search_fields = ['title', 'short_description']
 
     view_permissions = {
         'create': {'admin': True, 'is_author': True},  # only admins and authors are allowed to create posts
@@ -34,14 +39,3 @@ class BlogPostViewSet(viewsets.ModelViewSet):
 class ImageViewSet(viewsets.ModelViewSet):
     queryset = Image.objects.all()
     serializer_class = ImageSerializer
-
-
-class SearchView(generics.ListAPIView):
-    serializer_class = BlogPostSerializer
-
-    def get_queryset(self):
-        query = self.request.GET.get('query')
-        if not query:
-            query = ''
-        order = '-pub_date'
-        return BlogPost.objects.filter(title__icontains=query).order_by(order)
