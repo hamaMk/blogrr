@@ -24,9 +24,11 @@ class UserViewSet(viewsets.ModelViewSet):
 class BlogPostViewSet(viewsets.ModelViewSet):
     queryset = BlogPost.objects.all()
     serializer_class = BlogPostSerializer
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['owner', 'published']
     search_fields = ['title', 'short_description']
+    ordering_fields = ['creation_date', 'last_edited', 'pub_date']
+    ordering = ['-pub_date']
 
     view_permissions = {
         'create': {'admin': True, 'is_author': True},  # only admins and authors are allowed to create posts
