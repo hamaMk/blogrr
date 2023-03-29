@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'api',
 
     'rest_framework',
+    'rest_framework_roles',
     'tinymce',
     'rest_framework_simplejwt',
 ]
@@ -46,6 +47,10 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
+}
+
+REST_FRAMEWORK_ROLES = {
+  'ROLES': 'api.roles.ROLES',
 }
 
 MIDDLEWARE = [
