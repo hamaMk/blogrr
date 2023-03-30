@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'tinymce',
     'rest_framework_simplejwt',
     'django_filters',
+    "corsheaders",
 ]
 
 REST_FRAMEWORK = {
@@ -56,6 +57,8 @@ REST_FRAMEWORK_ROLES = {
 }
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -132,3 +135,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "users.AppUser"
 
 POST_TITLE_MAX_LENGTH = 70
+
+# Cors settings
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1",
+    "http://localhost",
+]
+
+# Making use of django CSRF feature
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1",
+    "http://localhost",
+]
