@@ -29,6 +29,7 @@ class BlogPostViewSet(viewsets.ModelViewSet):
     search_fields = ['title', 'short_description']
     ordering_fields = ['creation_date', 'last_edited', 'pub_date']
     ordering = ['-pub_date']
+    lookup_field = 'slug'
 
     view_permissions = {
         'create': {'admin': True, 'is_author': True},  # only admins and authors are allowed to create posts

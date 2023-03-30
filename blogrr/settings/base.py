@@ -138,12 +138,12 @@ POST_TITLE_MAX_LENGTH = 70
 
 # Cors settings
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1",
-    "http://localhost",
+    "http://127.0.0.1:3000",
+    "http://localhost:3000",
 ]
 
 # Making use of django CSRF feature
 CSRF_TRUSTED_ORIGINS = [
-    "http://127.0.0.1",
-    "http://localhost",
+    "http://127.0.0.1:3000",
+    "http://localhost:3000",
 ]
