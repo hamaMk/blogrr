@@ -18,13 +18,15 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = AppUser
-        fields = ['url', 'email', 'password', 'role']
+        fields = ['url', 'firstname', 'lastname', 'email', 'password', 'role']
 
 
 class BlogPostSerializer(serializers.HyperlinkedModelSerializer):
+    owner = UserSerializer()
+
     class Meta:
         model = BlogPost
-        fields = ['url', 'slug', 'title', 'short_description', 'content', 'owner']
+        fields = ['url', 'slug', 'title', 'short_description', 'content', 'pub_date', 'owner']
         lookup_field = 'slug'
         extra_kwargs = {
             'url': {'lookup_field': 'slug'}

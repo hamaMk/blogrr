@@ -13,6 +13,8 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
         (READER, 'Reader'),
     ]
 
+    firstname = models.CharField(max_length=150, null=True, blank=True, default=None)
+    lastname = models.CharField(max_length=150, null=True, blank=True, default=None)
     email = models.EmailField("email address", unique=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=True)
