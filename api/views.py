@@ -1,8 +1,7 @@
 from .models import AppUser
 from rest_framework import viewsets
-from .models import BlogPost, Image
-from .serializers import UserSerializer, BlogPostSerializer, ImageSerializer
-from rest_framework import generics
+from .models import BlogPost, Image, Tag
+from .serializers import UserSerializer, BlogPostSerializer, ImageSerializer, TagSerializer
 from rest_framework_roles.granting import is_self
 from rest_framework_roles.roles import is_anon
 from rest_framework import filters
@@ -16,6 +15,18 @@ class UserViewSet(viewsets.ModelViewSet):
     view_permissions = {
         'create': {'anon': True},  # only anonymous visitors allowed
         'list': {'admin': True},
+        'retrieve': {'user': is_self},
+        'update': {'user': is_self, 'admin': True},
+    }
+
+
+class TagViewSet(viewsets.ModelViewSet):
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer
+
+    view_permissions = {
+        'create': {'admin': True, 'is_author': True},
+        'list': {'is_reader': True, 'anon': is_anon},
         'retrieve': {'user': is_self},
         'update': {'user': is_self, 'admin': True},
     }
