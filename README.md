@@ -36,40 +36,40 @@ change environments dynamically
 4. Run: `python manage.py runserver`
 
 
-#API DOCS
+# API DOCS
 The API provides the following endpoints
 1. api/posts
 2. api/users
 3. api/tags
 
-##Posts
-###List posts  
+## Posts
+### List posts  
 curl --request GET --url 'http://127.0.0.1:8000/api/posts'
 
 ###Search posts  
 curl --request GET \
 --url 'http://127.0.0.1:8000/api/posts?search=an%20epic'
 
-###Filter posts
+### Filter posts
 by Owner  
 curl --request GET \
   --url 'http://127.0.0.1:8000/api/posts?owner=1'
 
 
-##Users
+## Users
 ###List users
 curl --request GET \
   --url http://127.0.0.1:8000/api/users \
   --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwMTg0ODI3LCJpYXQiOjE2ODAxODQ1MjcsImp0aSI6ImNlNGI5ZDg0YjhhMTQ4OWI5NDdhYzNkODM4YmM5MTE5IiwidXNlcl9pZCI6NH0.pIA2G0SSOrd7-exDFRgyxVE136aaLSnDa4KpJpJxuP8'
 
 
-##Tags
+## Tags
 ###List Tags
 curl --request GET \
   --url http://127.0.0.1:8000/api/tags
 
 
-##Admin Dashboard
+## Admin Dashboard
 To access the dashboard, open your browser and go to http://127.0.0.1:8000/admin
 
 The dashboard has the following functions
@@ -78,4 +78,6 @@ The dashboard has the following functions
 3. Manage Tags
 4. Upload images
 
+## Video
+https://drive.google.com/file/d/1W2TgxOAGJS9k_dHGGZIBttdphNtS_szo/view?usp=sharing
 
